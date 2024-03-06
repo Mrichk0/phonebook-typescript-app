@@ -1,5 +1,4 @@
 import { FC, ChangeEvent } from "react";
-import styled from "styled-components";
 import { FormContainer, FormInput } from "../../styles/form.styles";
 
 interface IFilter {

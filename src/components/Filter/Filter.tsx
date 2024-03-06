@@ -6,10 +6,6 @@ interface IFilter {
   filterContacts: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const FilterForm = styled.form`
-  text-align: center;
-`;
-
 const Filter: FC<IFilter> = ({ filterContacts }) => {
   return (
     <FormContainer>

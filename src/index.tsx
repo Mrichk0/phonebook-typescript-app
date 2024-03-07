@@ -6,7 +6,8 @@ import { baseTheme } from "./styles/theme";
 import Global from "./styles/global";
 import { Provider } from "react-redux";
 import { persistor, store } from "./store/store";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
+
 import { PersistGate } from "redux-persist/integration/react";
 
 const root = ReactDOM.createRoot(
@@ -16,10 +17,10 @@ root.render(
   <ThemeProvider theme={baseTheme}>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter basename="/phonebook-typescript-app">
+        <HashRouter>
           <Global />
           <App />
-        </BrowserRouter>
+        </HashRouter>
       </PersistGate>
     </Provider>
   </ThemeProvider>

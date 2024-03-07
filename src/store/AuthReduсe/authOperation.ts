@@ -79,14 +79,24 @@ export const fetchCurrentUser = createAsyncThunk<
   const state = thunkAPI.getState();
   const persistedToken = state.auth.token;
 
-  if (persistedToken === null) {
+  if (!persistedToken) {
     return thunkAPI.rejectWithValue("Token not found");
   }
+
   token.set(persistedToken);
+
   try {
     const { data } = await instance.get<IUser>("/users/current");
     return data;
-  } catch (e: any) {
-    return thunkAPI.rejectWithValue(e.message);
+  } catch (error: any) {
+    if (error.response && error.response.status === 401) {
+      return thunkAPI.rejectWithValue(
+        "Недійсний токен або неавторизований користувач"
+      );
+    } else {
+      return thunkAPI.rejectWithValue(
+        "Помилка при виконанні запиту до сервера"
+      );
+    }
   }
 });

@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "./hooks/storeHooks";
 import { lazy, useEffect } from "react";
 import { fetchCurrentUser } from "./store/AuthReduсe/authOperation";
 import Loader from "./components/shared/Loader";
-import { selectIsLogin } from "./store/AuthReduсe/authSelectors";
+import { selectLoading } from "./store/AuthReduсe/authSelectors";
 
 const PhoneBook = lazy(() => import("./components/PhoneBook"));
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
@@ -14,7 +14,7 @@ const PublicRoute = lazy(() => import("./routes/PublicRoute"));
 const PrivateRoute = lazy(() => import("./routes/PrivateRoute"));
 
 function App() {
-  const loading = useAppSelector(selectIsLogin);
+  const loading = useAppSelector(selectLoading);
 
   const dispatch = useAppDispatch();
   useEffect(() => {
